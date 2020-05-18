@@ -36,7 +36,9 @@ public class DuplicateApp {
     public static void main(String[] args) {
         //SearchJFrame frame = new SearchJFrame();
         //frame.setVisible(true);
-        DuplicateJFrame frame = new DuplicateJFrame();
+//        DuplicateJFrame frame = new DuplicateJFrame();
+//        frame.setVisible(true);
+        SearchJFrame frame = new SearchJFrame();
         frame.setVisible(true);
         
         DuplicateApp bd = new DuplicateApp();
@@ -85,7 +87,7 @@ public class DuplicateApp {
     
     public HashMap getLogin() throws SQLException {
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select login, email FROM reguser;");
+        ResultSet rs = stmt.executeQuery("select logname, email FROM reguser;");
         HashMap<String, String> fhash = new HashMap<>();
         
         while(rs.next()){
