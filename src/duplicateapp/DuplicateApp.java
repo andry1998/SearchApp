@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -115,9 +116,15 @@ public class DuplicateApp {
         return fhash;
     }
     
-    public HashMap getCombinedSearch(String param1, String param2) throws SQLException {
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select " + param1 + ", " + param2 + " FROM reguser;");
+    public HashMap getCombinedSearch(String fnameStr, String emailStr, String orgStr) throws SQLException {
+        //Statement stmt = con.createStatement();
+        //ResultSet rs = stmt.executeQuery("select logname FROM reguser WHERE fname like ? and org like ? and email like ?;");
+        String str = "select fname, logname FROM reguser WHERE fname LIKE ? and email LIKE ? and org LIKE ?;";
+        PreparedStatement ps = con.prepareStatement(str);
+        ps.setString(1,"%" + fnameStr + "%");
+        ps.setString(2,"%" + emailStr + "%");
+        ps.setString(3,"%" + orgStr + "%");
+        ResultSet rs = ps.executeQuery();
         HashMap<String, String> fhash = new HashMap<>();
         
         while(rs.next()){
@@ -125,7 +132,6 @@ public class DuplicateApp {
         }
         
         rs.close();
-        stmt.close();
             
         return fhash;
     }
