@@ -159,9 +159,8 @@ public class SearchJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             list1.clear();
-            for(Object item : bd1.getFullName().entrySet()){
-                if(item.toString().regionMatches(true, 0, jTextField1.getText(), 0, jTextField1.getText().length()))
-                    list1.add(item.toString());
+            for(Object item : bd1.getFullName(jTextField1.getText()).entrySet()){
+                list1.add(item.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(SearchJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -171,9 +170,8 @@ public class SearchJFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             list1.clear();
-            for(Object item : bd1.getEmail().entrySet()){
-                if(item.toString().regionMatches(true, 0, jTextField1.getText(), 0, jTextField1.getText().length()))
-                    list1.add(item.toString());
+            for(Object item : bd1.getEmail(jTextField1.getText()).entrySet()){
+                list1.add(item.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(SearchJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -183,9 +181,8 @@ public class SearchJFrame extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             list1.clear();
-            for(Object item : bd1.getLogin().entrySet()){
-                if(item.toString().regionMatches(true, 0, jTextField1.getText(), 0, jTextField1.getText().length()))
-                    list1.add(item.toString());
+            for(Object item : bd1.getLogin(jTextField1.getText()).entrySet()){
+                list1.add(item.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(SearchJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -199,9 +196,8 @@ public class SearchJFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
             list1.clear();
-            for(Object item : bd1.getOrganizated().entrySet()){
-                if(item.toString().regionMatches(true, 0, jTextField1.getText(), 0, jTextField1.getText().length()))
-                    list1.add(item.toString());
+            for(Object item : bd1.getOrganizated(jTextField1.getText()).entrySet()){
+                list1.add(item.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(SearchJFrame.class.getName()).log(Level.SEVERE, null, ex);

@@ -45,80 +45,68 @@ public class DuplicateApp {
         DuplicateApp bd = new DuplicateApp();
         bd.Connect1();
     }
-    
-    public static String select() throws SQLException {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select logname FROM reguser;");
-            String str = "Hello World";
-            rs.close();
-            stmt.close();
-            return str;
-        }
-        
          
-    public HashMap getFullName() throws SQLException {
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select fname, iname FROM reguser;");
+    public HashMap getFullName(String fnameStr) throws SQLException {
+        String str ="select fname, iname FROM reguser WHERE fname LIKE ?;";
+        PreparedStatement ps = con.prepareStatement(str);
+        ps.setString(1,"%" + fnameStr + "%");
+        ResultSet rs = ps.executeQuery();
         HashMap<String, String> fhash = new HashMap<>();
         
         while(rs.next()){
-                fhash.put(rs.getString(1), rs.getString(2));
+            fhash.put(rs.getString(1), rs.getString(2));
         }
         
-        rs.close();
-        stmt.close();
-            
+        rs.close();            
         return fhash;
     }
     
-    public HashMap getEmail() throws SQLException {
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select email, fname FROM reguser;");
+    public HashMap getEmail(String emailStr) throws SQLException {
+        String str = "select email, fname FROM reguser WHERE email LIKE ?;";
+        PreparedStatement ps = con.prepareStatement(str);
+        ps.setString(1,"%" + emailStr + "%");
+        ResultSet rs = ps.executeQuery();
         HashMap<String, String> fhash = new HashMap<>();
         
         while(rs.next()){
-                fhash.put(rs.getString(1), rs.getString(2));
+            fhash.put(rs.getString(1), rs.getString(2));
         }
         
-        rs.close();
-        stmt.close();
-            
+        rs.close();            
         return fhash;
     }
     
-    public HashMap getLogin() throws SQLException {
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select logname, email FROM reguser;");
+    public HashMap getLogin(String lognameStr) throws SQLException {
+        String str = "select logname, email FROM reguser WHERE logname LIKE ?;";
+        PreparedStatement ps = con.prepareStatement(str);
+        ps.setString(1,"%" + lognameStr + "%");
+        ResultSet rs = ps.executeQuery();
         HashMap<String, String> fhash = new HashMap<>();
         
         while(rs.next()){
-                fhash.put(rs.getString(1), rs.getString(2));
+            fhash.put(rs.getString(1), rs.getString(2));
         }
         
-        rs.close();
-        stmt.close();
-            
+        rs.close();      
         return fhash;
     }
     
-    public HashMap getOrganizated() throws SQLException {
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select org, fname FROM reguser;");
+    public HashMap getOrganizated(String orgStr) throws SQLException {
+        String str = "select org, fname FROM reguser WHERE org LIKE ?;";
+        PreparedStatement ps = con.prepareStatement(str);
+        ps.setString(1,"%" + orgStr + "%");
+        ResultSet rs = ps.executeQuery();
         HashMap<String, String> fhash = new HashMap<>();
         
         while(rs.next()){
                 fhash.put(rs.getString(1), rs.getString(2));
         }
         
-        rs.close();
-        stmt.close();
-            
+        rs.close();  
         return fhash;
     }
     
     public HashMap getCombinedSearch(String fnameStr, String emailStr, String orgStr) throws SQLException {
-        //Statement stmt = con.createStatement();
-        //ResultSet rs = stmt.executeQuery("select logname FROM reguser WHERE fname like ? and org like ? and email like ?;");
         String str = "select fname, logname FROM reguser WHERE fname LIKE ? and email LIKE ? and org LIKE ?;";
         PreparedStatement ps = con.prepareStatement(str);
         ps.setString(1,"%" + fnameStr + "%");
@@ -128,7 +116,7 @@ public class DuplicateApp {
         HashMap<String, String> fhash = new HashMap<>();
         
         while(rs.next()){
-                fhash.put(rs.getString(1), rs.getString(2));
+            fhash.put(rs.getString(1), rs.getString(2));
         }
         
         rs.close();

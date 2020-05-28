@@ -134,7 +134,7 @@ public class DuplicateJFrame extends javax.swing.JFrame {
         list1.clear();
         try {
             jLabel1.setText(String.valueOf(bd1.getDuplicateToFName().size()) + " dupl");
-            for(Object item : bd1.getOrganizated().entrySet()){
+            for(Object item : bd1.getOrganizated("").entrySet()){
                list1.add(item.toString());
             }
         } catch (SQLException ex) {
