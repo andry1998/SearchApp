@@ -39,7 +39,7 @@ public class DuplicateApp {
         //frame.setVisible(true);
 //        DuplicateJFrame frame = new DuplicateJFrame();
 //        frame.setVisible(true);
-        SearchJFrame frame = new SearchJFrame();
+        Search1JFrame frame = new Search1JFrame();
         frame.setVisible(true);
         
         DuplicateApp bd = new DuplicateApp();
